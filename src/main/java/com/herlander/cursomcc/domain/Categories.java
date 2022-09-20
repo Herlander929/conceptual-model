@@ -1,19 +1,25 @@
 package com.herlander.cursomcc.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Categoriess implements Serializable {
+@Entity
+public class Categories implements Serializable {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
-    public Categoriess() {
+    public Categories() {
 
     }
 
-    public Categoriess(Integer id, String nome) {
+    public Categories(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -37,11 +43,11 @@ public class Categoriess implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Categoriess)) return false;
+        if (!(o instanceof Categories)) return false;
 
-        Categoriess categoriess = (Categoriess) o;
+        Categories categories = (Categories) o;
 
-        return Objects.equals(id, categoriess.id);
+        return Objects.equals(id, categories.id);
     }
 
     @Override

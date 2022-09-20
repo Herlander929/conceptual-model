@@ -3,7 +3,7 @@ package com.herlander.cursomcc.resources;
 
 
 
-import com.herlander.cursomcc.domain.Categoriess;
+import com.herlander.cursomcc.domain.Categories;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +18,12 @@ import java.util.List;
 public class Categresource {
 
     @GetMapping
-    public List<Categoriess> list(){
+    public List<Categories> list(){
 
-        Categoriess cat1 = new Categoriess(1, "Informática");
-        Categoriess cat2 = new Categoriess(2, "Escritório");
+        Categories cat1 = new Categories(1, "Informática");
+        Categories cat2 = new Categories(2, "Escritório");
 
-        List<Categoriess> lista = new ArrayList<>();
+        List<Categories> lista = new ArrayList<>();
         lista.add(cat1);
         lista.add(cat2);
 
