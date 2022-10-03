@@ -1,10 +1,9 @@
 package com.herlander.cursomcc.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,6 +13,19 @@ public class Categories implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
+
+
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<Products> produtos = new ArrayList<>();
+
+    public List<Products> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Products> produtos) {
+        this.produtos = produtos;
+    }
 
     public Categories() {
 
