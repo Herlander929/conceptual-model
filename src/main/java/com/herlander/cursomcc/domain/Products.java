@@ -1,5 +1,7 @@
 package com.herlander.cursomcc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class Products  implements Serializable  {
     String nome;
     Double preco;
 
-
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORIE",
     joinColumns = @JoinColumn(name = "Product_id"),

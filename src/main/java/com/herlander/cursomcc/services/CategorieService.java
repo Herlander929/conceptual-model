@@ -1,6 +1,7 @@
 package com.herlander.cursomcc.services;
 
 import com.herlander.cursomcc.domain.Categories;
+import com.herlander.cursomcc.exceptions.ObjectNotFoundException;
 import com.herlander.cursomcc.repositories.CategorieRepositorie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,8 @@ public class CategorieService {
 
     public Categories buscar(Integer id) {
         Optional<Categories> obj = repo.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
+                "Objeto não encontrado! Id: " + id + ", Tipo: " + Categories.class.getName()));
 
     }
 }
