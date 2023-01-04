@@ -1,13 +1,8 @@
 package com.herlander.cursomcc;
 
-import com.herlander.cursomcc.domain.Categories;
-import com.herlander.cursomcc.domain.City;
-import com.herlander.cursomcc.domain.Products;
-import com.herlander.cursomcc.domain.State;
-import com.herlander.cursomcc.repositories.CategorieRepositorie;
-import com.herlander.cursomcc.repositories.CityRepositorie;
-import com.herlander.cursomcc.repositories.ProductRepositorie;
-import com.herlander.cursomcc.repositories.StateRepositorie;
+import com.herlander.cursomcc.domain.*;
+import com.herlander.cursomcc.domain.enums.TipoCliente;
+import com.herlander.cursomcc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +25,12 @@ public class CursomccApplication implements CommandLineRunner {
 
 	@Autowired
 	private StateRepositorie stateRepositorie;
+
+	@Autowired
+	private ClientRepositorie clientRepositorie;
+
+	@Autowired
+	private AdressRepositorie adressRepositorie;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomccApplication.class, args);
@@ -69,6 +70,17 @@ public class CursomccApplication implements CommandLineRunner {
 		stateRepositorie.saveAll(Arrays.asList(est1, est2));
 		cityRepositorie.saveAll(Arrays.asList(c1, c2, c3));
 
+		Client cli1 = new Client(null, "Maria Sillva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA );
+		cli1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
+
+		Adress e1 = new Adress(null, "Rua Flores", "300", "Apto 303", "jardim", "38220834",cli1, c1  );
+		Adress e2 = new Adress(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012",cli1, c2 );
+
+
+		cli1.getAdresses().addAll(Arrays.asList(e1,e2));
+
+		clientRepositorie.saveAll(Arrays.asList(cli1));
+		adressRepositorie.saveAll(Arrays.asList(e1,e2));
 
 
 
