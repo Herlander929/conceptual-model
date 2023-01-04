@@ -1,5 +1,7 @@
 package com.herlander.cursomcc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +17,7 @@ public class Adress {
     private String cep;
 
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
