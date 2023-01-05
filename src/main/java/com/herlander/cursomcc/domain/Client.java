@@ -20,6 +20,11 @@ public class Client {
     private String cpfOuCnpj;
     private Integer type;
 
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
+
+
     @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private List<Adress> adresses = new ArrayList<>();
@@ -93,6 +98,15 @@ public class Client {
     public void setPhones(Set<String> phones) {
         this.phones = phones;
     }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+
 
     @Override
     public boolean equals(Object o) {
