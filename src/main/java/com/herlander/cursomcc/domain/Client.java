@@ -1,5 +1,6 @@
 package com.herlander.cursomcc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.herlander.cursomcc.domain.enums.TipoCliente;
 
@@ -21,6 +22,7 @@ public class Client {
     private Integer type;
 
 
+    @JsonBackReference
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
