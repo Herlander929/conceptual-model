@@ -1,6 +1,5 @@
 package com.herlander.cursomcc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -17,7 +16,7 @@ public class Products  implements Serializable  {
     String nome;
     Double preco;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUCT_CATEGORIE",
     joinColumns = @JoinColumn(name = "Product_id"),

@@ -1,7 +1,6 @@
 package com.herlander.cursomcc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.herlander.cursomcc.domain.enums.TipoCliente;
 
 import javax.persistence.*;
@@ -22,12 +21,12 @@ public class Client {
     private Integer type;
 
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
 
-    @JsonManagedReference
+
     @OneToMany(mappedBy = "client")
     private List<Adress> adresses = new ArrayList<>();
 
