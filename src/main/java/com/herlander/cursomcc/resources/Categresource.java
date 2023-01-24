@@ -24,8 +24,8 @@ public class Categresource {
     private CategorieService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id){
-        Categories obj = service.buscar(id);
+    public ResponseEntity<Categories> find(@PathVariable Integer id){
+        Categories obj = service.find(id);
         return ResponseEntity.ok().body(obj);
 
 
@@ -38,6 +38,14 @@ public class Categresource {
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return  ResponseEntity.created(uri).build();
+
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public  ResponseEntity<Void> update(@RequestBody Categories obj, @PathVariable Integer id) {
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
 
     }
 }
