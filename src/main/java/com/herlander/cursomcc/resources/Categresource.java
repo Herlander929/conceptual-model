@@ -4,6 +4,7 @@ package com.herlander.cursomcc.resources;
 
 
 import com.herlander.cursomcc.domain.Categories;
+import com.herlander.cursomcc.dto.CategoriaDto;
 import com.herlander.cursomcc.services.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -53,6 +54,15 @@ public class Categresource {
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
         return ResponseEntity.noContent().build();
+
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<CategoriaDto>> findAll(){
+        List<Categories> list = service.findAll();
+        List<CategoriaDto> listDto = list.stream().map(obj -> new CategoriaDto(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
+
 
     }
 }
