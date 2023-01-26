@@ -7,6 +7,7 @@ import com.herlander.cursomcc.domain.Categories;
 import com.herlander.cursomcc.dto.CategoriaDto;
 import com.herlander.cursomcc.services.CategorieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -65,4 +66,18 @@ public class Categresource {
 
 
     }
+
+    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    public ResponseEntity<Page<CategoriaDto>> findPage(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage", defaultValue = "24")Integer linesPerPage,
+            @RequestParam(value = "orderBy", defaultValue = "nome")String orderBy,
+            @RequestParam(value = "direction", defaultValue = "ASC")String direction){
+        Page<Categories> list = service.findPage(page, linesPerPage, orderBy, direction);
+        Page<CategoriaDto> listDto = list.map(obj -> new CategoriaDto(obj));
+        return ResponseEntity.ok().body(listDto);
+
+
+    }
+
 }
