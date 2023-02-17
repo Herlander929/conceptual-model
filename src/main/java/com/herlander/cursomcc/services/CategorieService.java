@@ -1,6 +1,7 @@
 package com.herlander.cursomcc.services;
 
 import com.herlander.cursomcc.domain.Categories;
+import com.herlander.cursomcc.dto.CategoriaDto;
 import com.herlander.cursomcc.exceptions.DataIntegrityException;
 import com.herlander.cursomcc.exceptions.ObjectNotFoundException;
 import com.herlander.cursomcc.repositories.CategorieRepositorie;
@@ -55,5 +56,11 @@ public class CategorieService {
     public Page<Categories> findPage(Integer page, Integer linesPerPage, String orderBy, String direction ){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction),orderBy);
         return repo.findAll(pageRequest);
+    }
+
+
+    public Categories fromDTO(CategoriaDto objDto){
+        return new Categories(objDto.getId(), objDto.getNome());
+
     }
 }
